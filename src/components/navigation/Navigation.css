@@ -1,0 +1,40 @@
+.topNav {
+    flex-basis: 100%;
+    display: flex;
+    background-color: #2B2D42;
+    color: white;
+    box-shadow: inset 0 -4px 0 0 #1A1B25;
+    height: 7vh;
+}
+
+.leftNav {
+    background-color: #1A1B25;
+    height: 93vh;
+    width: 15%;
+}
+
+.menuButtonContainer {
+    background-color: #1A1B25;
+    flex-basis: 15%;
+    display: flex;
+    justify-content: center;
+    padding: 1vh 0;
+}
+
+.nav__dashboard {
+    margin: 5vh 0;
+    padding: 2vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+.nav__dashboardIcon {
+    margin: 0 .5vw;
+}
+
+.nav__dashboardText {
+    color: white
+}
