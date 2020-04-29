@@ -2,19 +2,20 @@ import React, { useState } from 'react'
 import TopNav from "./components/navigation/TopNav";
 import LeftNav from './components/navigation/LeftNav';
 import './ApplicationView.css'
+import MainContent from './MainContentView';
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)
-    const toggle = () => {setShowLeftNav(!showLeftNav)}
+    const toggleNav = () => {setShowLeftNav(!showLeftNav)}
 
     if (showLeftNav) {
         return (
             <>
-                <TopNav toggle={toggle}/>
+                <TopNav toggleNav={toggleNav}/>
 
                 <div className="main">
                     <LeftNav />
-                    <div className="test">Login</div>
+                     <MainContent />
                 </div>
             </>
         )
@@ -23,10 +24,10 @@ const ApplicationView = () => {
     else {
         return (
             <>
-                <TopNav toggle={toggle}/>
+                <TopNav toggleNav={toggleNav}/>
 
                 <div className="main">
-                    <div className="test">Login</div>
+                    <MainContent />
                 </div>
             </>
         )
