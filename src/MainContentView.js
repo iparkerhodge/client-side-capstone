@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Auth } from './components/login/Auth'
 import Dashboard from './components/dashboard/Dashboard'
+import { DataProvider } from './components/data/DataProvider'
 
 const MainContent = ({activeView}) => {
     const [check, update] = useState(false)

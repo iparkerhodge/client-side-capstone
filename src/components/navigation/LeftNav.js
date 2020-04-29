@@ -4,7 +4,7 @@ import {ReactComponent as ChartsIcon} from '../../images/charts.svg'
 import './Navigation.css'
 
 const LeftNav = ({setActiveView}) => (
-    <aside class="leftNav">
+    <aside className="leftNav">
         <div className="nav__dashboard" onClick={() => setActiveView('dashboard')}>
             <DashboardIcon className="nav__dashboardIcon" />
             <div className="nav__dashboardText">User's Dashboard</div>
