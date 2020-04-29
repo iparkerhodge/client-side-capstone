@@ -6,28 +6,33 @@ import MainContent from './MainContentView';
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)
-    const toggleNav = () => {setShowLeftNav(!showLeftNav)}
+    const toggleNav = () => {
+        if (sessionStorage.getItem("user")) {
+            setShowLeftNav(!showLeftNav)
+        }
+    }
 
+    const [activeView, setActiveView] = useState('dashboard')
+    
     if (showLeftNav) {
         return (
             <>
                 <TopNav toggleNav={toggleNav}/>
 
                 <div className="main">
-                    <LeftNav />
-                     <MainContent />
+                    <LeftNav setActiveView={setActiveView}/>
+                    <MainContent activeView={activeView} />
                 </div>
             </>
         )
     }
-
     else {
         return (
             <>
                 <TopNav toggleNav={toggleNav}/>
 
                 <div className="main">
-                    <MainContent />
+                    <MainContent activeView={activeView} />
                 </div>
             </>
         )
