@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Auth } from './components/login/Auth'
 import Dashboard from './components/dashboard/Dashboard'
-import { DataProvider } from './components/data/DataProvider'
+import ChartList from './components/charts/ChartList'
 
 const MainContent = ({activeView}) => {
     const [check, update] = useState(false)
@@ -15,7 +15,7 @@ const MainContent = ({activeView}) => {
 
     const showCharts = () => (
         <div>
-            THESE ARE THE CHARTS
+            <ChartList />
         </div>
     )
 
