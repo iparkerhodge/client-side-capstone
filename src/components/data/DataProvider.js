@@ -16,6 +16,10 @@ export const DataProvider = (props) => {
     useEffect(() => {
         getData()
     }, [])
+
+    useEffect(() => {
+        console.log(timeSeriesGlobal)
+    }, [timeSeriesGlobal])
     
     return(
         <DataContext.Provider value={{
