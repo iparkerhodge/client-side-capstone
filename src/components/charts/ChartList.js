@@ -8,8 +8,10 @@ import { DateProvider } from '../data/DateCalculator'
 const ChartList = () => (
     <DataProvider>
         <DateProvider>
+            <div className="chartListContainer">
             <GlobalTotalByDate />
             <BarGraph />
+            </div>
         </DateProvider>
     </DataProvider>
 )

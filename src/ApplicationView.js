@@ -21,7 +21,7 @@ const ApplicationView = () => {
                 <TopNav toggleNav={toggleNav}/>
 
                 <div className="main">
-                    <LeftNav setActiveView={setActiveView}/>
+                    <LeftNav setActiveView={setActiveView} toggleNav={toggleNav} />
                     <MainContent activeView={activeView} />
                 </div>
             </>

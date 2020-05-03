@@ -22,7 +22,7 @@
     padding: 1vh 0;
 }
 
-.nav__dashboard {
+.nav__btn {
     margin: 5vh 0;
     padding: 2vh 0;
     display: flex;
@@ -32,28 +32,11 @@
     border-bottom: 2px solid #ffffff;
 }
 
-.nav__dashboardIcon {
+.nav__icon {
     margin: 0 .5vw;
+    height: 4rem
 }
 
-.nav__dashboardText {
-    color: white
-}
-
-.nav__charts {
-    margin: 5vh 0;
-    padding: 2vh 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-}
-
-.nav__chartsIcon {
-    margin: 0 .5vw;
-}
-
-.nav__chartsText {
+.nav__text {
     color: white
 }
