@@ -5,6 +5,7 @@ export const DataContext = React.createContext()
 
 export const DataProvider = (props) => {
     const [timeSeriesGlobal, setTimeSeriesGlobal] = useState([])
+    const [timeSeriesUSA, setTimeSeriesUSA] = useState([])
 
     const getData = () => {
         return fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
@@ -13,17 +14,25 @@ export const DataProvider = (props) => {
         .then(setTimeSeriesGlobal)
     }
 
+    const getUSAData = () => {
+        return fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
+        .then(resp => resp.text())
+        .then(text => d3.csvParse(text))
+        .then(setTimeSeriesUSA)
+    }
+
     useEffect(() => {
         getData()
+        getUSAData()
     }, [])
 
     useEffect(() => {
-        console.log(timeSeriesGlobal)
-    }, [timeSeriesGlobal])
+        console.log(timeSeriesUSA)
+    }, [timeSeriesUSA])
     
     return(
         <DataContext.Provider value={{
-            getData, timeSeriesGlobal
+            getData, timeSeriesGlobal, timeSeriesUSA
         }}>
             {props.children}
         </DataContext.Provider>

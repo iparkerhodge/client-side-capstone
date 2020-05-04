@@ -13,7 +13,7 @@ export const DateProvider = (props) => {
             { unit: 'day' }
         )
 
-        const [distanceNumberString, _] = distanceFromDay0.split(' ')
+        const distanceNumberString = distanceFromDay0.split(' ')[0]
         const distanceNumber = parseInt(distanceNumberString)
         
         let allDates = []
