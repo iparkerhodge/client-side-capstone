@@ -3,3 +3,7 @@
     padding: 15px;
     margin: 15px;
 }
+
+.barGraph{
+    border: 1px solid black;
+}
