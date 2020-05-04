@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { VictoryBar, VictoryChart, VictoryAxis,
-    VictoryZoomContainer, VictoryBrushContainer, createContainer } from 'victory'
+        VictoryBrushContainer, createContainer } from 'victory'
 import { DataContext } from '../data/DataProvider'
 import { DateContext } from '../data/DateCalculator'
 
@@ -76,7 +76,7 @@ export const BarGraph = () => {
                     cases: ${datum.cases}`}
                 />
             }>
-                <VictoryAxis tickCount={6} tickFormat={(d) => formatDate(d)} label={"Date"}/>
+                <VictoryAxis tickCount={10} tickFormat={(d) => formatDate(d)} />
                 <VictoryAxis dependentAxis tickCount={5} tickFormat={(n) => formatNumber(n)} />
                 <VictoryBar 
                     data={data}
@@ -101,7 +101,7 @@ export const BarGraph = () => {
                         onBrushDomainChange={handleBrush}/>
                 }
             >
-                <VictoryAxis tickCount={6} tickFormat={(d) => formatDate(d)}/>
+                <VictoryAxis tickCount={10} tickFormat={(d) => formatDate(d)} label={"Date"}/>
                 <VictoryBar 
                     data={data}
                     style={{
