@@ -7,3 +7,24 @@
 .barGraph{
     border: 1px solid black;
 }
+
+.chartListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.globalTotal {
+    flex-basis: 100%;
+}
+
+.selectableGraph{
+    flex-basis: 100%;
+}
+
+.chartHeader {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #2B2D42;
+}

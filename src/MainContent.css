@@ -1,0 +1,11 @@
+.mainContentContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainContentContainer--leftNavOut {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+}

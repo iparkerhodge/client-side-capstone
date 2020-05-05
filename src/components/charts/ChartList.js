@@ -4,13 +4,18 @@ import { GlobalTotalByDate } from './GlobalTotalByDate'
 import './Charts.css'
 import { BarGraph } from './BarGraph'
 import { DateProvider } from '../data/DateCalculator'
+import { SelectableBarGraph } from './SelectableBarGraph'
 
 const ChartList = () => (
     <DataProvider>
         <DateProvider>
             <div className="chartListContainer">
-            <GlobalTotalByDate />
-            <BarGraph />
+                <div className="globalTotal">
+                    <GlobalTotalByDate />
+                </div>
+            <div className="selectableGraph">
+                <SelectableBarGraph />
+            </div>
             </div>
         </DateProvider>
     </DataProvider>
