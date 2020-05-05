@@ -22,7 +22,7 @@ const ApplicationView = () => {
 
                 <div className="main">
                     <LeftNav setActiveView={setActiveView} toggleNav={toggleNav} />
-                    <MainContent activeView={activeView} />
+                    <MainContent activeView={activeView} leftNav={showLeftNav}/>
                 </div>
             </>
         )

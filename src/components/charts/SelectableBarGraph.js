@@ -192,17 +192,6 @@ export const SelectableBarGraph = () => {
 
     const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi")
 
-    const [selectedDomain, setSelectedDomain] = useState()
-    const [zoomDomain, setZoomDomain] = useState()
-
-    const handleZoom = (domain) => {
-        setSelectedDomain(domain)
-    }
-
-    const handleBrush = (domain) => {
-        setZoomDomain(domain)
-    }
-
     const formatNumber = (n) => {
         const mToK = n/1000
         if(mToK >= 1000) {
@@ -229,8 +218,8 @@ export const SelectableBarGraph = () => {
     }
 
     return (
-        <div>
-            <div>{chartHeader()}</div>
+        <div className="Chart">
+            <div className="chartHeader">{chartHeader()}</div>
             <AllSelections 
                 countrySelected={countrySelected} setCountrySelected={setCountrySelected}
                 stateSelected={stateSelected} setStateSelected={setStateSelected}
@@ -242,9 +231,6 @@ export const SelectableBarGraph = () => {
                 width={900}
                 containerComponent={
                 <VictoryZoomVoronoiContainer responsive={false}
-                    allowPan={false}
-                    zoomDomain={zoomDomain}
-                    onZoomDomainChange={handleZoom}
                     labels={({datum}) => `Date: ${datum.date}
                     cases: ${datum.cases}`}
                 />
@@ -259,32 +245,7 @@ export const SelectableBarGraph = () => {
                     x="date"
                     y="cases"
                     barRatio={1}
-                    cornerRadius={1}
                     />
-            </VictoryChart>
-
-            <VictoryChart
-            height={200}
-            width={900}
-            domainPadding={ {x: [0, 15], y: 0}}
-            padding={{top: 0, left: 50, right: 50, bottom: 30}}
-                containerComponent={
-                    <VictoryBrushContainer responsive={false}
-                        brushDomain={selectedDomain}
-                        onBrushDomainChange={handleBrush}/>
-                }
-            >
-                <VictoryAxis tickCount={10} label={"Date"}/>
-                <VictoryBar 
-                    data={data}
-                    style={{
-                        data: {fill: '#F47E17'}
-                    }}
-                    x="date"
-                    y="cases"
-                    barRatio={4}
-                    cornerRadius={5}
-                />
             </VictoryChart>
         </div>
     )

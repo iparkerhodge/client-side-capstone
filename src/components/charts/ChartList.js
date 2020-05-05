@@ -10,8 +10,12 @@ const ChartList = () => (
     <DataProvider>
         <DateProvider>
             <div className="chartListContainer">
-            <GlobalTotalByDate />
-            <SelectableBarGraph />
+                <div className="globalTotal">
+                    <GlobalTotalByDate />
+                </div>
+            <div className="selectableGraph">
+                <SelectableBarGraph />
+            </div>
             </div>
         </DateProvider>
     </DataProvider>

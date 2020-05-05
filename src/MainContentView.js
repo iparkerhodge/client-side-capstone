@@ -2,19 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { Auth } from './components/login/Auth'
 import Dashboard from './components/dashboard/Dashboard'
 import ChartList from './components/charts/ChartList'
+import './MainContent.css'
 
-const MainContent = ({activeView}) => {
+const MainContent = ({activeView, leftNav}) => {
     const [check, update] = useState(false)
     const toggleLogin = () => update(!check)
 
     const [components, setComponents] = useState()
 
+    const checkLeftNavOut = () => {
+        if(leftNav){
+            return 'mainContentContainer--leftNavOut'
+        }
+        else {
+            return 'mainContentContainer'
+        }
+    }
+
     const showDashboard = () => (
+        <div className={checkLeftNavOut()}>
         <Dashboard />
+        </div>
     )
 
     const showCharts = () => (
-        <div>
+        <div className={checkLeftNavOut()}>
             <ChartList />
         </div>
     )
