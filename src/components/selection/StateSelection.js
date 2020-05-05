@@ -7,7 +7,7 @@ export const StateSelection = ({countrySelected, setStateSelected}) => {
 
     //display Australia states
     const australiaStatesArray = []
-    timeSeriesGlobal.map(region => {
+    timeSeriesGlobal.forEach(region => {
         if (region['Country/Region'] === "Australia") {
             australiaStatesArray.push(region['Province/State']
             )}
@@ -15,7 +15,7 @@ export const StateSelection = ({countrySelected, setStateSelected}) => {
 
     //display Canada provinces
     const canadaProvincesArray = []
-    timeSeriesGlobal.map(region => {
+    timeSeriesGlobal.forEach(region => {
         if (region['Country/Region'] === "Canada") {
             canadaProvincesArray.push(region['Province/State'])
         }
@@ -28,7 +28,7 @@ export const StateSelection = ({countrySelected, setStateSelected}) => {
 
     //display China Provinces
     const chinaProvincesArray = []
-    timeSeriesGlobal.map(region => {
+    timeSeriesGlobal.forEach(region => {
         if (region['Country/Region'] === 'China') {
             chinaProvincesArray.push(region['Province/State'])
         }
@@ -36,7 +36,7 @@ export const StateSelection = ({countrySelected, setStateSelected}) => {
 
     //display US States
     const usStatesWithDuplicates = []
-    timeSeriesUSA.map(state => {
+    timeSeriesUSA.forEach(state => {
         usStatesWithDuplicates.push(state['Province_State'])
     })
 

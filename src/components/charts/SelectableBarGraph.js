@@ -1,18 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { VictoryBar, VictoryChart } from 'victory'
-import { CountrySelection } from '../selection/CountrySelection'
-import { StateSelection } from '../selection/StateSelection'
+import { AllSelections } from '../selection/AllSelections'
 
 export const SelectableBarGraph = () => {
-    const [countrySelected, setCountrySelected] = useState('')
-    const [stateSelected, setStateSelected] = useState('')
-
     return (
         <div>
-            <CountrySelection setCountrySelected={setCountrySelected}/>
-            <StateSelection 
-                countrySelected={countrySelected}
-                setStateSelected={setStateSelected}/>
+            <AllSelections />
             <VictoryChart domainPadding={20}>
                 <VictoryBar />
             </VictoryChart>

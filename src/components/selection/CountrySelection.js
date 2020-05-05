@@ -6,7 +6,7 @@ export const CountrySelection = ({setCountrySelected}) => {
 
     //Create an array of the list of all countries
     const allCountriesArrayWithDuplicates = []
-    timeSeriesGlobal.map(place => {
+    timeSeriesGlobal.forEach(place => {
         if (place['Country/Region'] === 'Australia' || place['Country/Region'] === 'Canada' || place['Country/Region'] === 'China') {
             allCountriesArrayWithDuplicates.push(place['Country/Region'])
         }
