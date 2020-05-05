@@ -11,7 +11,6 @@ const ChartList = () => (
         <DateProvider>
             <div className="chartListContainer">
             <GlobalTotalByDate />
-            <BarGraph />
             <SelectableBarGraph />
             </div>
         </DateProvider>

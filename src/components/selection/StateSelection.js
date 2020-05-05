@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import { DataContext } from '../data/DataProvider'
 
-export const StateSelection = ({countrySelected, setStateSelected}) => {
+export const StateSelection = ({countrySelected, setStateSelected, setCountySelected, countySelected}) => {
     const {timeSeriesGlobal} = useContext(DataContext)
     const {timeSeriesUSA} = useContext(DataContext)
 
@@ -45,6 +45,9 @@ export const StateSelection = ({countrySelected, setStateSelected}) => {
     const state = useRef()
 
     const handleStateChange = (event) => {
+        if(countySelected !== '') {
+            setCountySelected('')
+        }
         setStateSelected(event.target.value)
     }
 

@@ -15,7 +15,7 @@ export const BarGraph = () => {
     const totalForDate = (date) => {
         let total = 0
         timeSeriesGlobal.map(prov => {
-            return total += +(prov[date]) //<- string concerted to number
+            return total += +(prov[date]) //<- string converted to number
         })
         arrayOfTotalsForEachDay.push(total)
     }

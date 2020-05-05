@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import { DataContext } from '../data/DataProvider'
 
-export const CountrySelection = ({setCountrySelected}) => {
+export const CountrySelection = ({setCountrySelected, stateSelected, setStateSelected, setCountySelected, countySelected}) => {
     const { timeSeriesGlobal } = useContext(DataContext)
 
     //Create an array of the list of all countries
@@ -25,6 +25,12 @@ export const CountrySelection = ({setCountrySelected}) => {
     const country = useRef()
 
     const handleCountryChange = (event) => {
+        if(stateSelected !== ''){
+            if(countySelected !== '') {
+                setCountySelected('')
+            }
+            setStateSelected('')
+        }
         setCountrySelected(event.target.value)
     }
 
