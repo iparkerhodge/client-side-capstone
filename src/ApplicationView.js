@@ -3,6 +3,7 @@ import TopNav from "./components/navigation/TopNav";
 import LeftNav from './components/navigation/LeftNav';
 import './ApplicationView.css'
 import MainContent from './MainContentView';
+import { WidgetProvider } from './components/data/WidgetProvider';
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)
@@ -22,7 +23,9 @@ const ApplicationView = () => {
 
                 <div className="main">
                     <LeftNav setActiveView={setActiveView} toggleNav={toggleNav} />
-                    <MainContent activeView={activeView} leftNav={showLeftNav}/>
+                    <WidgetProvider>
+                        <MainContent activeView={activeView} leftNav={showLeftNav} setActiveView={setActiveView}/>
+                    </WidgetProvider>
                 </div>
             </>
         )
@@ -33,7 +36,9 @@ const ApplicationView = () => {
                 <TopNav toggleNav={toggleNav}/>
 
                 <div className="main">
-                    <MainContent activeView={activeView} />
+                    <WidgetProvider>
+                        <MainContent activeView={activeView} setActiveView={setActiveView}/>
+                    </WidgetProvider>
                 </div>
             </>
         )
