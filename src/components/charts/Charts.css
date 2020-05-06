@@ -12,15 +12,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 4rem;
 }
 
 .globalTotal {
     flex-basis: 100%;
 }
 
-.selectableGraph{
-    flex-basis: 100%;
-}
 
 .chartHeader {
     text-align: center;

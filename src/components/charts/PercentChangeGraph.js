@@ -5,7 +5,7 @@ import { DataContext } from '../data/DataProvider'
 import { DateContext } from '../data/DateCalculator'
 import { WidgetsContext } from '../data/WidgetProvider'
 
-export const SelectableBarGraph = ({setActiveView}) => {
+export const PercentChangeGraph = ({setActiveView}) => {
     const {addWidget} = useContext(WidgetsContext)
     const [countrySelected, setCountrySelected] = useState('')
     const [stateSelected, setStateSelected] = useState('')
@@ -19,7 +19,7 @@ export const SelectableBarGraph = ({setActiveView}) => {
         const widget = {
             userId: +(sessionStorage.getItem("user")),
             graph: "barGraph",
-            statistic: "totalCases",
+            statistic: "percentChange",
             country: countrySelected,
             state: stateSelected,
             county: countySelected
@@ -205,30 +205,45 @@ export const SelectableBarGraph = ({setActiveView}) => {
 
     findData()
 
-    const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi")
+    //data => %change
+    data.forEach((v, i) => {
+        if(i > 0) {
+        const old = data[i-1]
 
-    const formatNumber = (n) => {
-        const mToK = n/1000
-        if(mToK >= 1000) {
-            return `${mToK/1000}M`
+        const change = v.cases - old.cases
+            if(change === 0) {
+                v.percentChange = 0
+            }
+            else if (old.cases === 0) {
+                v.percentChange = 0
+            }
+            else {
+                const percentChange = (change/(Math.abs(old.cases)) * 100)
+                v.percentChange = percentChange
+        }
         }
         else {
-            return `${mToK}K`
+            v.percentChange = 0
         }
-    }
+    })
+
+
+    console.log(data)
+
+    const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi")
 
     const chartHeader = () => {
         if(countySelected) {
-            return `Confirmed Cases: ${countrySelected} - ${stateSelected} - ${countySelected}`
+            return `% Change: ${countrySelected} - ${stateSelected} - ${countySelected}`
         }
         else if(stateSelected) {
-            return `Confirmed Cases: ${countrySelected} - ${stateSelected}`
+            return `% Change: ${countrySelected} - ${stateSelected}`
         }
         else if(countrySelected) {
-            return `Confirmed Cases: ${countrySelected}`
+            return `% Change: ${countrySelected}`
         }
         else {
-            return `Confirmed Cases: Global`
+            return `% Change: Global`
         }
     }
 
@@ -248,21 +263,23 @@ export const SelectableBarGraph = ({setActiveView}) => {
                 containerComponent={
                 <VictoryZoomVoronoiContainer responsive={false}
                     labels={({datum}) => `Date: ${datum.date}
-                    cases: ${datum.cases}`}
+                    PercentChange: ${datum.percentChange.toFixed(2)}`}
                 />
             }>
                 <VictoryAxis tickCount={10} />
-                <VictoryAxis dependentAxis tickCount={5} tickFormat={(n) => formatNumber(n)} />
+                <VictoryAxis dependentAxis tickCount={5} />
                 <VictoryBar 
                     data={data}
                     style={{
                         data: {fill: '#F47E17', stroke: 'white', strokeWidth: 1}
                     }}
                     x="date"
-                    y="cases"
+                    y="percentChange"
                     barRatio={1}
-                    />
+                />
             </VictoryChart>
         </div>
     )
+
+    return <div></div>
 }
