@@ -5,6 +5,12 @@ export const WidgetsContext = React.createContext()
 export const WidgetProvider = (props) => {
     const [widgets, setWidgets] = useState([])
 
+    const [deleteMe, setDeleteMe] = useState(false)
+
+    const deletePLZ = () => {
+        setDeleteMe(!deleteMe)
+    }
+
     const getWidgets = () => {
         return fetch('http://localhost:8088/widgets')
             .then(r => r.json())
@@ -22,13 +28,20 @@ export const WidgetProvider = (props) => {
             .then(getWidgets)
     }
 
+    const removeWidget = widgetId => {
+        return fetch(`http://localhost:8088/animals/${widgetId}`, {
+            method: "DELETE"
+        })
+            .then(getWidgets)
+    }
+
     useEffect(() => {
         getWidgets()
     }, [])
 
     return (
         <WidgetsContext.Provider value={{
-            widgets, addWidget
+            widgets, addWidget, removeWidget, deleteMe, deletePLZ
         }}>
             {props.children}
         </WidgetsContext.Provider>

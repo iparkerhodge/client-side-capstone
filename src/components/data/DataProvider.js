@@ -25,10 +25,6 @@ export const DataProvider = (props) => {
         getData()
         getUSAData()
     }, [])
-
-    useEffect(()=> {
-        console.log(timeSeriesUSA)
-    }, [timeSeriesUSA])
     
     return(
         <DataContext.Provider value={{
