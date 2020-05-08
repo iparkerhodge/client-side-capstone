@@ -4,29 +4,20 @@ import Dashboard from './components/dashboard/Dashboard'
 import ChartList from './components/charts/ChartList'
 import './MainContent.css'
 
-const MainContent = ({activeView, leftNav, setActiveView}) => {
+const MainContent = ({activeView, setActiveView}) => {
     const [check, update] = useState(false)
     const toggleLogin = () => update(!check)
 
     const [components, setComponents] = useState()
 
-    const checkLeftNavOut = () => {
-        if(leftNav){
-            return 'mainContentContainer--leftNavOut'
-        }
-        else {
-            return 'mainContentContainer'
-        }
-    }
-
     const showDashboard = () => (
-        <div className={checkLeftNavOut()}>
+        <div className='mainContentContainer' >
         <Dashboard />
         </div>
     )
 
     const showCharts = () => (
-        <div className={checkLeftNavOut()}>
+        <div className='mainContentContainer'>
             <ChartList setActiveView={setActiveView}/>
         </div>
     )

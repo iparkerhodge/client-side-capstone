@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
-import { VictoryBar, VictoryChart, VictoryAxis, createContainer, VictoryLine } from 'victory'
+import { VictoryBar, VictoryChart, VictoryAxis, createContainer } from 'victory'
 import { AllSelections } from '../selection/AllSelections'
 import { DataContext } from '../data/DataProvider'
 import { DateContext } from '../data/DateCalculator'
 import { WidgetsContext } from '../data/WidgetProvider'
 
-export const SelectableBarGraph = ({setActiveView}) => {
+export const TotalCasesSelect = ({setActiveView}) => {
     const {addWidget} = useContext(WidgetsContext)
     const [countrySelected, setCountrySelected] = useState('')
     const [stateSelected, setStateSelected] = useState('')

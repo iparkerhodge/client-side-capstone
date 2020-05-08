@@ -3,8 +3,9 @@ import { DataProvider } from '../data/DataProvider'
 import { GlobalTotalByDate } from './GlobalTotalByDate'
 import './Charts.css'
 import { DateProvider } from '../data/DateCalculator'
-import { SelectableBarGraph } from './SelectableBarGraph'
-import { PercentChangeGraph } from './PercentChangeGraph'
+import { TotalCasesSelect } from './TotalCasesSelect'
+import { PercentChangeSelect } from './PercentChangeSelect'
+import { MovingAverageSelect } from './MovingAverageSelect'
 
 const ChartList = ({setActiveView}) => (
     <DataProvider>
@@ -14,10 +15,13 @@ const ChartList = ({setActiveView}) => (
                     <GlobalTotalByDate />
                 </div>
                 <div className="selectableGraph">
-                    <SelectableBarGraph setActiveView={setActiveView}/>
+                    <TotalCasesSelect setActiveView={setActiveView}/>
                 </div>
                 <div className="percentChangeGraph">
-                    <PercentChangeGraph setActiveView={setActiveView}/>
+                    <PercentChangeSelect setActiveView={setActiveView}/>
+                </div>
+                <div className="movingAverageGraph">
+                    <MovingAverageSelect setActiveView={setActiveView}/>
                 </div>
             </div>
         </DateProvider>

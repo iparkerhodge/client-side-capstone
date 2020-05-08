@@ -4,6 +4,8 @@ import LeftNav from './components/navigation/LeftNav';
 import './ApplicationView.css'
 import MainContent from './MainContentView';
 import { WidgetProvider } from './components/data/WidgetProvider';
+import { DateProvider } from './components/data/DateCalculator';
+import { DataProvider } from './components/data/DataProvider';
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)
@@ -15,34 +17,23 @@ const ApplicationView = () => {
         }
     }
 
-    
-    if (showLeftNav) {
-        return (
-            <>
-                <TopNav toggleNav={toggleNav}/>
+    return (
+        <>
+        <DataProvider>
+        <DateProvider>
+        <WidgetProvider>
+            <TopNav toggleNav={toggleNav} activeView={activeView} />
 
-                <div className="main">
-                    <LeftNav setActiveView={setActiveView} toggleNav={toggleNav} />
-                    <WidgetProvider>
-                        <MainContent activeView={activeView} leftNav={showLeftNav} setActiveView={setActiveView}/>
-                    </WidgetProvider>
-                </div>
-            </>
+            <div className="main">
+                {showLeftNav ? <LeftNav setActiveView={setActiveView} toggleNav={toggleNav} /> : <div></div>}
+                <MainContent activeView={activeView} leftNav={showLeftNav}
+                    setActiveView={setActiveView}/>
+            </div>
+        </WidgetProvider>
+        </DateProvider>
+        </DataProvider>
+         </>
         )
-    }
-    else {
-        return (
-            <>
-                <TopNav toggleNav={toggleNav}/>
-
-                <div className="main">
-                    <WidgetProvider>
-                        <MainContent activeView={activeView} setActiveView={setActiveView}/>
-                    </WidgetProvider>
-                </div>
-            </>
-        )
-    }
 }
 
 export default ApplicationView

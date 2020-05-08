@@ -1,7 +1,51 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { WidgetsContext } from '../data/WidgetProvider'
+import { TotalCasesDash } from '../charts/TotalCasesDash'
+import { PercentChangeDash } from '../charts/PercentChangeDash'
+import { MovingAverageDash } from '../charts/MovingAverageDash'
+import './Dashboard.css'
 
-const Dashboard = () => (
-    <div>THIS IS WHERE THE DASHBOARD WILL GO</div>
-)
+const Dashboard = () => {
+    const {widgets, removeWidget} = useContext(WidgetsContext)
+    const currentUser = +(sessionStorage.getItem("user"))
+    const usersWidgets = widgets.filter (o => o.userId === currentUser)
+
+    const {showDelete} = useContext(WidgetsContext)
+
+    return(
+        <>
+        <div></div>
+        <div>
+            {usersWidgets.map((widget) => {
+            if(widget.statistic === 'totalCases') {
+                //make a graph with the props country, state, county
+                return (
+                    <div className="widgetContainer">
+                        {showDelete ? <div className="btn btn--delete" onClick={() => {removeWidget(widget.id)}}>x</div> : ''}
+                        <TotalCasesDash key={widget.id} country={widget.country} state={widget.state} county={widget.county}/>
+                    </div>
+                )
+            }
+            else if(widget.statistic === 'percentChange') {
+                return (
+                    <div className="widgetContainer">
+                        {showDelete ? <div className="btn btn--delete" onClick={() => {removeWidget(widget.id)}}>x</div> : ''}
+                        <PercentChangeDash key={widget.id} country={widget.country} state={widget.state} county={widget.county} />
+                    </div>
+                )
+            }
+            else if(widget.statistic === 'movingAverage') {
+                return (
+                    <div className="widgetContainer">
+                        {showDelete ? <div className="btn btn--delete" onClick={() => {removeWidget(widget.id)}}>x</div> : ''}
+                        <MovingAverageDash key={widget.id} country={widget.country} state={widget.state} county={widget.county} />
+                    </div>
+                )
+            }
+        })}
+        </div>
+        </>
+    )
+}
 
 export default Dashboard
