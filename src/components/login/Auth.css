@@ -1,0 +1,21 @@
+.auth{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.welcomeMessage {
+    flex-basis: 100%
+}
+
+.info {
+    flex-basis: 40%;
+    margin: 20px
+}
+
+.authContainer {
+    flex-basis: 40%;
+    margin: 20px;
+}

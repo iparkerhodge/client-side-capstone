@@ -5,7 +5,7 @@ import './Navigation.css'
 import { WidgetsContext } from '../data/WidgetProvider'
 
 const LeftNav = ({setActiveView, toggleNav}) => {
-    const {deletePLZ, deleteMe} = useContext(WidgetsContext)
+    const {toggleShowDelete, showDelete} = useContext(WidgetsContext)
 
     return(
     <aside className="leftNav">
@@ -19,8 +19,8 @@ const LeftNav = ({setActiveView, toggleNav}) => {
         <div className="nav__charts nav__btn" onClick={() => {
             setActiveView('charts')
             toggleNav()
-            if(deleteMe) {
-                deletePLZ()
+            if(showDelete) {
+                toggleShowDelete()
             }
             }}>
             <ChartsIcon className="nav__chartsIcon nav__icon" />

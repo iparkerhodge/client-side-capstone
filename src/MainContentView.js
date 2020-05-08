@@ -4,7 +4,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import ChartList from './components/charts/ChartList'
 import './MainContent.css'
 
-const MainContent = ({activeView, modify, props}) => {
+const MainContent = ({activeView, setActiveView}) => {
     const [check, update] = useState(false)
     const toggleLogin = () => update(!check)
 
@@ -12,13 +12,13 @@ const MainContent = ({activeView, modify, props}) => {
 
     const showDashboard = () => (
         <div className='mainContentContainer' >
-        <Dashboard modify={modify} props={props}/>
+        <Dashboard />
         </div>
     )
 
     const showCharts = () => (
         <div className='mainContentContainer'>
-            <ChartList />
+            <ChartList setActiveView={setActiveView}/>
         </div>
     )
 
