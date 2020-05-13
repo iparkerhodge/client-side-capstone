@@ -6,6 +6,7 @@ import MainContent from './MainContentView';
 import { WidgetProvider } from './components/data/WidgetProvider';
 import { DateProvider } from './components/data/DateCalculator';
 import { DataProvider } from './components/data/DataProvider';
+import { CreateJSON } from './components/map/JSONConverter';
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)
@@ -22,6 +23,7 @@ const ApplicationView = () => {
         <DataProvider>
         <DateProvider>
         <WidgetProvider>
+        <CreateJSON>
             <TopNav toggleNav={toggleNav} activeView={activeView} />
 
             <div className="main">
@@ -29,6 +31,7 @@ const ApplicationView = () => {
                 <MainContent activeView={activeView} leftNav={showLeftNav}
                     setActiveView={setActiveView}/>
             </div>
+        </CreateJSON>
         </WidgetProvider>
         </DateProvider>
         </DataProvider>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Register } from './Register'
 import { Login } from './Login'
 import './Auth.css'
+import {ReactComponent as MaskMan} from '../../images/medical-mask.svg'
 
 export const Auth = ({toggleLogin}) => (
         <div className='auth'>
@@ -19,8 +20,9 @@ export const Auth = ({toggleLogin}) => (
                 </div>
                 <div>
                     Register or login to begin creating your customizable dashboard to track confirmed cases, percent change, new cases, 
-                    and moving averages for the countries, provinces, states, and counties that matter to you.
+                    and moving averages for the countries, provinces, states, and counties that matter to you. 
                 </div>
+                <MaskMan />
             </div>
             <div className="authContainer">
                 <Login toggleLogin={toggleLogin} />

@@ -17,6 +17,7 @@
     height: 100%;
     width: 15%;
     position: fixed;
+    padding: 0 1px;
 }
 
 .menuButtonContainer {

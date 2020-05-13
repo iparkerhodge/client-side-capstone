@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { WidgetsContext } from '../data/WidgetProvider'
 import { TotalCasesDash } from '../charts/TotalCasesDash'
 import { PercentChangeDash } from '../charts/PercentChangeDash'
 import { MovingAverageDash } from '../charts/MovingAverageDash'
+import Kepler from '../map/Map'
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -14,8 +15,11 @@ const Dashboard = () => {
 
     return(
         <>
-        <div></div>
+        <div className='dashboardHeader'>Dashboard</div>
         <div>
+            <Kepler />
+        </div>
+        <div className='dashboard'>
             {usersWidgets.map((widget) => {
             if(widget.statistic === 'totalCases') {
                 //make a graph with the props country, state, county

@@ -38,7 +38,6 @@ export const Login = (props) => {
             <form className="form--login" onSubmit={handleLogin}>
                 <h2>Please sign in</h2>
                 <fieldset>
-                    <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email"
                         id="email"
                         className="form-control"
@@ -46,7 +45,6 @@ export const Login = (props) => {
                         required autoFocus />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputPassword"> Password </label>
                     <input ref={password} type="password"
                         id="password"
                         className="form-control"

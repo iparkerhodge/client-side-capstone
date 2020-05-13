@@ -12,10 +12,23 @@
 
 .info {
     flex-basis: 40%;
-    margin: 20px
+    margin: 20px;
+    font-weight: 600;
+    align-self: center;
+    text-align: justify;
+}
+
+.info div {
+    margin: 10px 0;
 }
 
 .authContainer {
     flex-basis: 40%;
     margin: 20px;
+}
+
+.form--login fieldset,
+.form--register fieldset {
+    border: none;
+    text-align: center;
 }
