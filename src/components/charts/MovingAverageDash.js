@@ -140,7 +140,7 @@ export const MovingAverageDash = ({country, state, county}) => {
                 data = dataForThisSelection
             }
             else {
-                const countryObject = timeSeriesGlobal.find(c => c['Country/Region'] === countrySelected)
+                const countryObject = timeSeriesGlobal.find(c => c['Country/Region'] === countrySelected) || {}
 
                 const countryTotalsArray = []
                 allDateArray.forEach(day => {

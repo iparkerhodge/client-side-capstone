@@ -2,10 +2,13 @@ import React from 'react'
 import { Register } from './Register'
 import { Login } from './Login'
 import './Auth.css'
+import {ReactComponent as MaskMan} from '../../images/medical-mask.svg'
+import MapImage from '../../images/MapCap.png'
 
 export const Auth = ({toggleLogin}) => (
         <div className='auth'>
             <h1 className="welcomeMessage">Welcome to Custom COVID-19 Tracker</h1>
+            <img src={MapImage} className='mapImage' alt='Map' />
             <div className="info">
                 <div>As policy makers begin to re-open states and municipalities with questionable regard for scientific data,
                     Custom COVID-19 Tracker was designed for you to track the data in your region to make the right 
@@ -19,8 +22,9 @@ export const Auth = ({toggleLogin}) => (
                 </div>
                 <div>
                     Register or login to begin creating your customizable dashboard to track confirmed cases, percent change, new cases, 
-                    and moving averages for the countries, provinces, states, and counties that matter to you.
+                    and moving averages for the countries, provinces, states, and counties that matter to you. 
                 </div>
+                <MaskMan />
             </div>
             <div className="authContainer">
                 <Login toggleLogin={toggleLogin} />

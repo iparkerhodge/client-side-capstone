@@ -188,9 +188,13 @@ export const TotalCasesDash = ({country, state, county}) => {
 
     findData()
 
+    const formatNumber = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
     const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi")
 
-    const formatNumber = (n) => {
+    const shortenNumber = (n) => {
         const mToK = n/1000
         if(mToK >= 1000) {
             return `${mToK/1000}M`
@@ -215,9 +219,18 @@ export const TotalCasesDash = ({country, state, county}) => {
         }
     }
 
+    const chartDescription = () => {
+        const mostRecent = data.slice(-1)[0] || {}
+
+        return(
+            `As of ${mostRecent.date} there are ${mostRecent.cases ? formatNumber(mostRecent.cases) : ''} cases`
+        )
+    }
+
     return (
         <div className="Chart">
             <div className="chartHeader">{chartHeader()}</div>
+            <div className="chartDescription">{chartDescription()}</div>
             <VictoryChart
                 height={600}
                 width={900}
@@ -228,7 +241,7 @@ export const TotalCasesDash = ({country, state, county}) => {
                 />
             }>
                 <VictoryAxis tickCount={10} />
-                <VictoryAxis dependentAxis tickCount={5} tickFormat={(n) => formatNumber(n)} />
+                <VictoryAxis dependentAxis tickCount={5} tickFormat={(n) => shortenNumber(n)} />
                 <VictoryBar 
                     data={data}
                     style={{
