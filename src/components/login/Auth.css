@@ -6,8 +6,16 @@
     text-align: center;
 }
 
+.mapImage {
+    width: 100vw;
+    height: auto;
+}
+
 .welcomeMessage {
-    flex-basis: 100%
+    flex-basis: 100%;
+    margin-top: 65px;
+    margin-bottom: -42px;
+    z-index: 5;
 }
 
 .info {
