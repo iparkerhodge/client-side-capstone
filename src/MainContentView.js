@@ -29,6 +29,16 @@ const MainContent = ({activeView, setActiveView}) => {
         </div>
     )
 
+    const showAuth = () => (
+        <Auth toggleLogin={toggleLogin} />
+    )
+
+    useEffect(() => {
+        if(check) {
+            setActiveView('dashboard')
+        }
+    }, [check])
+
         useEffect(() => {
             if(activeView === 'dashboard') {
                 setComponents(showDashboard)
@@ -39,20 +49,16 @@ const MainContent = ({activeView, setActiveView}) => {
             else if (activeView === 'maps') {
                 setComponents(showMaps)
             }
+            else if (activeView === 'login') {
+                setComponents(showAuth)
+            }
         }, [activeView])
-
-    if (sessionStorage.getItem("user")) {
+        
         return(
             <>
                 {components}
             </>
         )
-    }
-    else {
-        return (
-            <Auth toggleLogin={toggleLogin} />
-        )
-    }
 }
 
 export default MainContent
