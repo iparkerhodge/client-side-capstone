@@ -19,7 +19,6 @@ export const DataProvider = (props) => {
         .then(resp => resp.text())
         .then(text => d3.csvParse(text))
         .then(setTimeSeriesUSA)
-        .then(console.log('fetch'))
     }
 
     useEffect(() => {

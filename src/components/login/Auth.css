@@ -4,18 +4,43 @@
     flex-wrap: wrap;
     justify-content: space-around;
     text-align: center;
+    height: 100vh;
 }
 
 .mapImage {
     width: 100vw;
-    height: auto;
+    height: 100vh;
+}
+
+.welcomeMessageContainer {
+    width: 100%;
+    background-color: #2b2d42;
+    z-index: 6;
+    position: absolute;
 }
 
 .welcomeMessage {
-    flex-basis: 100%;
-    margin-top: 65px;
-    margin-bottom: -42px;
     z-index: 5;
+    color: #F47E17;
+    font-weight: 700;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrowIcon {
+    position: relative;
+    bottom: 50px;
+    z-index: 2;
+}
+
+.arrow {
+    height: 2.2em;
+}
+
+.arrowText {
+    color: #F47E17;
 }
 
 .info {
@@ -39,4 +64,21 @@
 .form--register fieldset {
     border: none;
     text-align: center;
+}
+
+.welcomeLoad {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2b2d42;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcomeLoadMessage{
+    color: #F47E17
+}
+
+.welcomePageTwo {
+    margin-top: 40px;
 }

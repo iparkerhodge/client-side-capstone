@@ -13,18 +13,20 @@ const reducers = combineReducers({
 
 const store = createStore(reducers, {}, applyMiddleware(taskMiddleware))
 
-const GlobalMap = () => {
+const LoginMap = () => {
   return (
     <Provider store={store}>
       <Map />
     </Provider>)
 }
 
-export default GlobalMap
+export default LoginMap
 
 const Map = (props) => {
   const dispatch = useDispatch()
-  const { globalData, start, end } = useContext(JSONContext)
+  const { globalData } = useContext(JSONContext)
+  const { USAData } = useContext(JSONContext)
+
   useEffect(() => {
     if (globalData) {
       dispatch(
@@ -46,8 +48,33 @@ const Map = (props) => {
     }
   }, [dispatch, globalData])
 
-  const config =
-  {
+  useEffect(() => {
+    if (USAData) {
+        dispatch(
+            addDataToMap({
+                datasets: {
+                    info: {
+                        label: 'COVID-19 USA',
+                        id: 'covid19_usa'
+                    },
+                    data: USAData
+                },
+                option: {
+                    centerMap: false,
+                    readOnly: true
+                },
+                config: {}
+            })
+        )
+    }
+}, [dispatch, USAData])
+
+  return <KeplerGl id='login' mapboxApiAccessToken='pk.eyJ1IjoicGFya2VyaG9kZ2UiLCJhIjoiY2thMmtwYnlkMDc1bTNmbmR3bHcxaHdweCJ9.igAic2Z7pSjJUmtuulWnWA'
+    width={window.innerWidth} height={window.innerHeight} />
+}
+
+const config =
+{
     "version": "v1",
     "config": {
       "visState": {
@@ -62,8 +89,8 @@ const Map = (props) => {
             ],
             "type": "timeRange",
             "value": [
-              start,
-              end
+              1589155200000,
+              1589241600000
             ],
             "enlarged": true,
             "plotType": "histogram",
@@ -71,6 +98,96 @@ const Map = (props) => {
           }
         ],
         "layers": [
+          {
+            "id": "iab9p35",
+            "type": "point",
+            "config": {
+              "dataId": "covid19_usa",
+              "label": "Point",
+              "color": [
+                24,
+                38,
+                77
+              ],
+              "columns": {
+                "lat": "latitude",
+                "lng": "longitude",
+                "altitude": null
+              },
+              "isVisible": true,
+              "visConfig": {
+                "radius": 51.7,
+                "fixedRadius": false,
+                "opacity": 0.25,
+                "outline": false,
+                "thickness": 99.8,
+                "strokeColor": [
+                  24,
+                  38,
+                  77
+                ],
+                "colorRange": {
+                  "name": "Global Warming",
+                  "type": "sequential",
+                  "category": "Uber",
+                  "colors": [
+                    "#5A1846",
+                    "#900C3F",
+                    "#C70039",
+                    "#E3611C",
+                    "#F1920E",
+                    "#FFC300"
+                  ]
+                },
+                "strokeColorRange": {
+                  "name": "Global Warming",
+                  "type": "sequential",
+                  "category": "Uber",
+                  "colors": [
+                    "#5A1846",
+                    "#900C3F",
+                    "#C70039",
+                    "#E3611C",
+                    "#F1920E",
+                    "#FFC300"
+                  ]
+                },
+                "radiusRange": [
+                  0,
+                  146.4
+                ],
+                "filled": true
+              },
+              "textLabel": [
+                {
+                  "field": null,
+                  "color": [
+                    255,
+                    255,
+                    255
+                  ],
+                  "size": 18,
+                  "offset": [
+                    0,
+                    0
+                  ],
+                  "anchor": "start",
+                  "alignment": "center"
+                }
+              ]
+            },
+            "visualChannels": {
+              "colorField": null,
+              "colorScale": "quantile",
+              "strokeColorField": null,
+              "strokeColorScale": "quantile",
+              "sizeField": {
+                "name": "count",
+                "type": "integer"
+              },
+              "sizeScale": "sqrt"
+            }
+          },
           {
             "id": "kwf57su",
             "type": "point",
@@ -166,6 +283,12 @@ const Map = (props) => {
                 "state",
                 "day",
                 "count"
+              ],
+              "covid19_usa": [
+                "state",
+                "county",
+                "day",
+                "count"
               ]
             },
             "enabled": true
@@ -188,10 +311,10 @@ const Map = (props) => {
       "mapState": {
         "bearing": 0,
         "dragRotate": false,
-        "latitude": 2.315941617980199,
-        "longitude": 5.2051821656763035,
+        "latitude": 8.557399915427105,
+        "longitude": 20.53420345759785,
         "pitch": 0,
-        "zoom": 1.1428929297940322,
+        "zoom": 1.8180832729656744,
         "isSplit": false
       },
       "mapStyle": {
@@ -215,7 +338,3 @@ const Map = (props) => {
       }
     }
   }
-
-  return <KeplerGl id='covid' mapboxApiAccessToken='pk.eyJ1IjoicGFya2VyaG9kZ2UiLCJhIjoiY2thMmtwYnlkMDc1bTNmbmR3bHcxaHdweCJ9.igAic2Z7pSjJUmtuulWnWA'
-    width={window.innerWidth} height={window.innerHeight} />
-}

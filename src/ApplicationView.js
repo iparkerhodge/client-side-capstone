@@ -7,6 +7,7 @@ import { WidgetProvider } from './components/data/WidgetProvider';
 import { DateProvider } from './components/data/DateCalculator';
 import { DataProvider } from './components/data/DataProvider';
 import { CreateJSON } from './components/map/JSONConverter';
+import 'antd/dist/antd.css'
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)

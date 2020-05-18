@@ -9,6 +9,8 @@
 }
 
 .chartListContainer {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -16,10 +18,22 @@
     padding-bottom: 4rem;
 }
 
+.chartMenu {
+    flex-basis: 40%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
 .globalTotal {
     flex-basis: 100%;
 }
 
+.chartContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 .chartHeader {
     text-align: center;
@@ -31,4 +45,12 @@
 
 .chartDescription {
     text-align: center;
+}
+
+.selectableGraph,
+.percentChangeGraph,
+.movingAverageGraph {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
 }

@@ -11,6 +11,11 @@ export const CreateJSON = (props) => {
     const { timeSeriesGlobal } = useContext(DataContext)
     const { allDateArray } = useContext(DateContext)
 
+    //defining start and end to be used for time range in map config
+    const unformattedEnd = allDateArray.slice(-1)[0]
+    const end = new Date(unformattedEnd) - 18000000
+    const start = end - 86400000
+
     const formatDate = (date) => {
         return format(new Date(date), 'yyyy-MM-dd KK:mm:ss')
     }
@@ -40,8 +45,6 @@ export const CreateJSON = (props) => {
     const [USAData, setUSAData] = useState({})
     const [deconstructedUSA, setDeconstructedUSA] = useState()
 
-    console.log(timeSeriesUSA)
-
     const deconstructed = []
 
     const latest = allDateArray.slice(-1)[0]
@@ -53,12 +56,11 @@ export const CreateJSON = (props) => {
     // })
 
     timeSeriesUSA.forEach(datum => {
-            deconstructed.push([datum['Province_State'], datum['Admin2'], formatDate(latest), +(datum['Lat']), +(datum['Long_']), +(datum[latest])])
+        deconstructed.push([datum['Province_State'], datum['Admin2'], formatDate(latest), +(datum['Lat']), +(datum['Long_']), +(datum[latest])])
     })
 
     useEffect(() => {
         setDeconstructedUSA(deconstructed)
-        console.log('I am happening')
     }, [timeSeriesUSA])
 
     useEffect(() => {
@@ -77,14 +79,11 @@ export const CreateJSON = (props) => {
 
         setUSAData(data)
 
-        console.log(deconstructedUSA)
-        console.log(USAData)
-
     }, [deconstructedUSA])
 
     return (
         <JSONContext.Provider value={{
-            globalData, USAData
+            globalData, USAData, start, end
         }}>
             {props.children}
         </JSONContext.Provider>

@@ -1,34 +1,53 @@
-import React from 'react'
-import { Register } from './Register'
-import { Login } from './Login'
+import React, { useState, useEffect } from 'react'
 import './Auth.css'
-import {ReactComponent as MaskMan} from '../../images/medical-mask.svg'
-import MapImage from '../../images/MapCap.png'
+import { WelcomePageOne } from './WelcomePageOne'
+import { WelcomePageTwo } from './WelcomePageTwo'
+import { useSpring, animated } from 'react-spring'
+import { WelcomePageZero } from './WelcomePageZero'
 
-export const Auth = ({toggleLogin}) => (
+export const Auth = ({ toggleLogin }) => {
+    const [page, setPage] = useState(0)
+    const togglePage = () => setPage(2)
+    const [components, setComponents] = useState()
+
+    useEffect(() => {
+        setTimeout(() => {
+            setPage(1)
+        }, 3500)
+    }, [])
+
+    const showPageZero = () => {
+        return <WelcomePageZero />
+    }
+
+    const showPageOne = () => {
+        return <WelcomePageOne togglePage={togglePage} />
+    }
+
+    const showPageTwo = () => {
+        return <WelcomePageTwo toggleLogin={toggleLogin} />
+    }
+
+    useEffect(() => {
+        if (page === 1) {
+            setComponents(showPageOne)
+        }
+        else if (page === 2) {
+            setComponents(showPageTwo)
+        }
+        else if (page === 0) {
+            setComponents(showPageZero)
+        }
+    }, [page])
+
+    const animation = useSpring({ opacity: 1, from: { opacity: 0 } , delay: 1000})
+
+    return (
         <div className='auth'>
-            <h1 className="welcomeMessage">Welcome to Custom COVID-19 Tracker</h1>
-            <img src={MapImage} className='mapImage' alt='Map' />
-            <div className="info">
-                <div>As policy makers begin to re-open states and municipalities with questionable regard for scientific data,
-                    Custom COVID-19 Tracker was designed for you to track the data in your region to make the right 
-                    decisions for you.
-                </div>
-                <div>
-                    Using data uploaded and maintained by the Johns Hopkins University Center for Systems Science and Engineering, 
-                    gathered from the World Health Organization, US CDC, China CDC, National Health Comission of the People's Republic of China,
-                    Government of Canada, Australia Government Department of Health, and more, Custom COVID-19 Tracker aims to provide
-                    you with the most detailed analysis of the novel coronavirus (SARS-CoV-2/COVID-19).
-                </div>
-                <div>
-                    Register or login to begin creating your customizable dashboard to track confirmed cases, percent change, new cases, 
-                    and moving averages for the countries, provinces, states, and counties that matter to you. 
-                </div>
-                <MaskMan />
-            </div>
-            <div className="authContainer">
-                <Login toggleLogin={toggleLogin} />
-                <Register toggleLogin={toggleLogin} />
-            </div>
+            <animated.div className='welcomeMessageContainer' style={animation} >
+                <h1 className="welcomeMessage">Welcome to Custom COVID-19 Tracker</h1>
+            </animated.div>
+            {components}
         </div>
-)
+    )
+}

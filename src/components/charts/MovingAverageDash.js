@@ -261,11 +261,12 @@ export const MovingAverageDash = ({country, state, county}) => {
     }
 
     return (
-        <div className="Chart">
+        <div className="chartContainer">
             <div className="chartHeader">{chartHeader()}</div>
             <VictoryChart
-                height={600}
-                width={900}
+                className='chart'
+                height={300}
+                width={450}
                 containerComponent={
                 <VictoryVoronoiContainer responsive={false}
                     labels={({datum}) => `Date: ${datum.date}
