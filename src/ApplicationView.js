@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TopNav from "./components/navigation/TopNav";
 import LeftNav from './components/navigation/LeftNav';
 import './ApplicationView.css'
@@ -7,10 +7,17 @@ import { WidgetProvider } from './components/data/WidgetProvider';
 import { DateProvider } from './components/data/DateCalculator';
 import { DataProvider } from './components/data/DataProvider';
 import { CreateJSON } from './components/map/JSONConverter';
+import 'antd/dist/antd.css'
 
 const ApplicationView = () => {
     const [showLeftNav, setShowLeftNav] = useState(false)
-    const [activeView, setActiveView] = useState('dashboard')
+    const [activeView, setActiveView] = useState('login')
+
+    useEffect(() => {
+        if(sessionStorage.getItem('user')) {
+            setActiveView('dashboard')
+        }
+    }, [])
     
     const toggleNav = () => {
         if (sessionStorage.getItem("user")) {
@@ -24,7 +31,7 @@ const ApplicationView = () => {
         <DateProvider>
         <WidgetProvider>
         <CreateJSON>
-            <TopNav toggleNav={toggleNav} activeView={activeView} />
+            {activeView !== 'login' ? <TopNav toggleNav={toggleNav} activeView={activeView} /> : ''}
 
             <div className="main">
                 {showLeftNav ? <LeftNav setActiveView={setActiveView} toggleNav={toggleNav} /> : <div></div>}

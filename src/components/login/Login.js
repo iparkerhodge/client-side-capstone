@@ -1,4 +1,6 @@
 import React, {useRef} from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 export const Login = (props) => {
     const email = useRef()
@@ -34,27 +36,27 @@ export const Login = (props) => {
     }
 
     return (
-        <div className="container--login">
-            <form className="form--login" onSubmit={handleLogin}>
-                <h2>Please sign in</h2>
+        <div className="loginFormContainer">
+            <form onSubmit={handleLogin}>
+                <div>Please sign in</div>
                 <fieldset>
-                    <input ref={email} type="email"
+                    <TextField inputRef={email} type="email"
                         id="email"
                         className="form-control"
                         placeholder="Email address"
                         required autoFocus />
                 </fieldset>
                 <fieldset>
-                    <input ref={password} type="password"
+                    <TextField inputRef={password} type="password"
                         id="password"
                         className="form-control"
                         placeholder="Password"
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <Button type="submit">
                         Sign in
-                    </button>
+                    </Button>
                 </fieldset>
             </form>
         </div>

@@ -2,20 +2,45 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
+    height: 100vh;
 }
 
 .mapImage {
     width: 100vw;
-    height: auto;
+    height: 100vh;
+}
+
+.welcomeMessageContainer {
+    width: 100%;
+    background-color: #2b2d42;
+    z-index: 6;
+    position: absolute;
 }
 
 .welcomeMessage {
-    flex-basis: 100%;
-    margin-top: 65px;
-    margin-bottom: -42px;
     z-index: 5;
+    color: #F47E17;
+    font-weight: 700;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrowIcon {
+    position: relative;
+    bottom: 50px;
+    z-index: 2;
+}
+
+.arrow {
+    height: 2.2em;
+}
+
+.arrowText {
+    color: #F47E17;
 }
 
 .info {
@@ -30,13 +55,36 @@
     margin: 10px 0;
 }
 
-.authContainer {
-    flex-basis: 40%;
-    margin: 20px;
+.welcomeLoad {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2b2d42;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.form--login fieldset,
-.form--register fieldset {
-    border: none;
-    text-align: center;
+.welcomeLoadMessage{
+    color: #F47E17
+}
+
+.welcomePageTwo {
+    margin-top: 40px;
+}
+
+.authContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 20vw;
+}
+
+.loginFormContainer,
+.registerFormContainer {
+    flex-basis: 100%;
+    margin: 0px;
+}
+
+.loginFormContainer {
+    margin-bottom: -250px;
 }

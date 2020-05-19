@@ -121,7 +121,7 @@ export const TotalCasesDash = ({country, state, county}) => {
                 data = dataForThisSelection
             }
             else if (arrayOfCountriesThatBelongToOtherCountries.includes(countrySelected)){
-                const countryObject = timeSeriesGlobal.find(c => c['Province/State'] === countrySelected)
+                const countryObject = timeSeriesGlobal.find(c => c['Province/State'] === countrySelected) || {}
 
                 const countryTotalsArray = []
                 allDateArray.forEach(day => {
@@ -140,7 +140,7 @@ export const TotalCasesDash = ({country, state, county}) => {
                 data = dataForThisSelection
             }
             else {
-                const countryObject = timeSeriesGlobal.find(c => c['Country/Region'] === countrySelected)
+                const countryObject = timeSeriesGlobal.find(c => c['Country/Region'] === countrySelected) || {}
 
                 const countryTotalsArray = []
                 allDateArray.forEach(day => {
@@ -232,8 +232,8 @@ export const TotalCasesDash = ({country, state, county}) => {
             <div className="chartHeader">{chartHeader()}</div>
             <div className="chartDescription">{chartDescription()}</div>
             <VictoryChart
-                height={600}
-                width={900}
+                height={400}
+                width={600}
                 containerComponent={
                 <VictoryZoomVoronoiContainer responsive={false}
                     labels={({datum}) => `Date: ${datum.date}

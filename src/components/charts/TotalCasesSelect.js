@@ -245,7 +245,7 @@ export const TotalCasesSelect = ({setActiveView}) => {
 
 
     return (
-        <div className="Chart">
+        <div className="chart--select">
             <div className="chartHeader">{chartHeader()}</div>
             <div className="chartDescription">{chartDescription()}</div>
             <div className="btn--addChart" onClick={makeNewWidget}>Add Chart</div>

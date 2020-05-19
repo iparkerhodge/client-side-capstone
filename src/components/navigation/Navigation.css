@@ -9,39 +9,48 @@
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    z-index: 100;
+    z-index: 1001;
 }
 
 .leftNav {
     background-color: #1A1B25;
     height: 100%;
-    width: 15%;
+    width: 10vw;
     position: fixed;
-    padding: 0 1px;
+    padding: 60px 1px 0px 1px;
+    z-index: 1000;
+}
+
+.box {
+    flex-basis: 33%;
 }
 
 .menuButtonContainer {
     background-color: #1A1B25;
-    flex-basis: 15%;
+    width: 10vw;
     height: 7vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.pageName {
+    font-size: 24px;
+    flex-basis: 33%;
+    text-align: center;
+}
+
 .nav__btn {
-    margin: 5vh 0;
     padding: 2vh 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
 }
 
 .nav__icon {
-    margin: 0 .5vw;
-    height: 4rem
+    height: 3rem;
+    width: 3rem;
+    margin: 0 9px 0 9px;
 }
 
 .nav__text {
@@ -49,5 +58,7 @@
 }
 
 .modify{
-    margin-right: 3vh;
+    flex-basis: 33%;
+    text-align: right;
+    padding-right: 25px;
 }
