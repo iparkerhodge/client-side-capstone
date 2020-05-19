@@ -36,8 +36,9 @@ const DailyReportDash = ({setActiveView}) => {
     }, [dateSelected])
 
     return (
-        <div>
-            <select onChange={changeDate}>
+        <div className='dailyReport'>
+            <div className='dailyText'>U.S. Daily State Report</div>
+            <select onChange={changeDate} className='dailyDropdown'>
                 {options}
             </select>
             <Table columns={columns} dataSource={dailyReport} />

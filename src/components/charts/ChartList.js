@@ -38,7 +38,7 @@ const ChartList = ({ setActiveView }) => {
     )
 
     const showDailyReport = (
-        <div className='dailyReport'>
+        <div className='dailyReportTable'>
             <DailyReport setActiveView={setActiveView}/>
         </div>
     )
