@@ -24,57 +24,10 @@ export default LoginMap
 
 const Map = (props) => {
   const dispatch = useDispatch()
-  const { globalData } = useContext(JSONContext)
+  const { globalData, start, end } = useContext(JSONContext)
   const { USAData } = useContext(JSONContext)
 
-  useEffect(() => {
-    if (globalData) {
-      dispatch(
-        addDataToMap({
-          datasets: {
-            info: {
-              label: 'COVID-19 Global',
-              id: 'covid19_global'
-            },
-            data: globalData
-          },
-          option: {
-            centerMap: false,
-            readOnly: true
-          },
-          config: config
-        })
-      )
-    }
-  }, [dispatch, globalData])
-
-  useEffect(() => {
-    if (USAData) {
-        dispatch(
-            addDataToMap({
-                datasets: {
-                    info: {
-                        label: 'COVID-19 USA',
-                        id: 'covid19_usa'
-                    },
-                    data: USAData
-                },
-                option: {
-                    centerMap: false,
-                    readOnly: true
-                },
-                config: {}
-            })
-        )
-    }
-}, [dispatch, USAData])
-
-  return <KeplerGl id='login' mapboxApiAccessToken='pk.eyJ1IjoicGFya2VyaG9kZ2UiLCJhIjoiY2thMmtwYnlkMDc1bTNmbmR3bHcxaHdweCJ9.igAic2Z7pSjJUmtuulWnWA'
-    width={window.innerWidth} height={window.innerHeight} />
-}
-
-const config =
-{
+  const config = {
     "version": "v1",
     "config": {
       "visState": {
@@ -89,8 +42,8 @@ const config =
             ],
             "type": "timeRange",
             "value": [
-              1589155200000,
-              1589241600000
+              start,
+              end
             ],
             "enlarged": true,
             "plotType": "histogram",
@@ -338,3 +291,49 @@ const config =
       }
     }
   }
+
+  useEffect(() => {
+    if (globalData) {
+      dispatch(
+        addDataToMap({
+          datasets: {
+            info: {
+              label: 'COVID-19 Global',
+              id: 'covid19_global'
+            },
+            data: globalData
+          },
+          option: {
+            centerMap: false,
+            readOnly: true
+          },
+          config: config
+        })
+      )
+    }
+  }, [dispatch, globalData])
+
+  useEffect(() => {
+    if (USAData) {
+        dispatch(
+            addDataToMap({
+                datasets: {
+                    info: {
+                        label: 'COVID-19 USA',
+                        id: 'covid19_usa'
+                    },
+                    data: USAData
+                },
+                option: {
+                    centerMap: false,
+                    readOnly: true
+                },
+                config: {}
+            })
+        )
+    }
+}, [dispatch, USAData])
+
+  return <KeplerGl id='login' mapboxApiAccessToken='pk.eyJ1IjoicGFya2VyaG9kZ2UiLCJhIjoiY2thMmtwYnlkMDc1bTNmbmR3bHcxaHdweCJ9.igAic2Z7pSjJUmtuulWnWA'
+    width={window.innerWidth} height={window.innerHeight} />
+}

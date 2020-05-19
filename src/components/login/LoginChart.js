@@ -1,21 +1,21 @@
 import React, { useContext } from 'react'
-import { VictoryChart, VictoryAxis, VictoryLine, VictoryVoronoiContainer, createContainer, VictoryLegend } from 'victory'
+import { VictoryChart, VictoryAxis, VictoryLine, VictoryLegend } from 'victory'
 import { DataContext } from '../data/DataProvider'
 import { DateContext } from '../data/DateCalculator'
 
-export const MovingAverageDash = ({country, state, county}) => {
-    const countrySelected = country
-    const stateSelected = state
-    const countySelected = county
+export const LoginChart = () => {
+    const countrySelected = ''
+    const stateSelected = ''
+    const countySelected = ''
 
     const { timeSeriesGlobal } = useContext(DataContext) || []
-    const {timeSeriesUSA} = useContext(DataContext) || []
-    const {allDateArray} = useContext(DateContext) || []
+    const { timeSeriesUSA } = useContext(DataContext) || []
+    const { allDateArray } = useContext(DateContext) || []
 
-    let data = [{date:"1/21/20", cases: 0}]
+    let data = [{ date: "1/21/20", cases: 0 }]
 
     const findData = () => {
-        if(countySelected !== '') {
+        if (countySelected !== '') {
             //push county data to data array
             //loop through time series data and return the object that matches the county
             const countyListArray = timeSeriesUSA.filter(obj => obj['Province_State'] === stateSelected) || []
@@ -29,7 +29,7 @@ export const MovingAverageDash = ({country, state, county}) => {
 
             const dataForThisSelection = []
 
-            allDateArray.forEach((v,i) => {
+            allDateArray.forEach((v, i) => {
                 const obj = {}
                 obj.date = v
                 obj.cases = countyTotalsArray[i]
@@ -55,7 +55,7 @@ export const MovingAverageDash = ({country, state, county}) => {
                 const dataForThisSelection = []
                 allDateArray.map(date => totalForDate(date))
 
-                allDateArray.forEach((v,i) => {
+                allDateArray.forEach((v, i) => {
                     const obj = {}
                     obj.date = v
                     obj.cases = stateTotalsArray[i]
@@ -72,10 +72,10 @@ export const MovingAverageDash = ({country, state, county}) => {
                 allDateArray.forEach(day => {
                     provinceTotalsArray.push(+(provinceObject[day]))
                 })
-                
+
                 const dataForThisSelection = []
 
-                allDateArray.forEach((v,i) => {
+                allDateArray.forEach((v, i) => {
                     const obj = {}
                     obj.date = v
                     obj.cases = provinceTotalsArray[i]
@@ -90,7 +90,7 @@ export const MovingAverageDash = ({country, state, county}) => {
             //push country data to data array
             const arrayOfCountriesThatBelongToOtherCountries = []
             timeSeriesGlobal.forEach(place => {
-                if(place['Province/State'] !== '') {
+                if (place['Province/State'] !== '') {
                     arrayOfCountriesThatBelongToOtherCountries.push(place['Province/State'])
                 }
             })
@@ -110,8 +110,8 @@ export const MovingAverageDash = ({country, state, county}) => {
                 allDateArray.map(date => totalForDate(date))
 
                 const dataForThisSelection = []
-                
-                allDateArray.forEach((v,i) => {
+
+                allDateArray.forEach((v, i) => {
                     const obj = {}
                     obj.date = v
                     obj.cases = arrayOfTotalsForEachDay[i]
@@ -120,7 +120,7 @@ export const MovingAverageDash = ({country, state, county}) => {
 
                 data = dataForThisSelection
             }
-            else if (arrayOfCountriesThatBelongToOtherCountries.includes(countrySelected)){
+            else if (arrayOfCountriesThatBelongToOtherCountries.includes(countrySelected)) {
                 const countryObject = timeSeriesGlobal.find(c => c['Province/State'] === countrySelected)
 
                 const countryTotalsArray = []
@@ -130,7 +130,7 @@ export const MovingAverageDash = ({country, state, county}) => {
 
                 const dataForThisSelection = []
 
-                allDateArray.forEach((v,i) => {
+                allDateArray.forEach((v, i) => {
                     const obj = {}
                     obj.date = v
                     obj.cases = countryTotalsArray[i]
@@ -149,7 +149,7 @@ export const MovingAverageDash = ({country, state, county}) => {
 
                 const dataForThisSelection = []
 
-                allDateArray.forEach((v,i) => {
+                allDateArray.forEach((v, i) => {
                     const obj = {}
                     obj.date = v
                     obj.cases = countryTotalsArray[i]
@@ -175,7 +175,7 @@ export const MovingAverageDash = ({country, state, county}) => {
 
             const dataForNoSelection = []
 
-            allDateArray.forEach((v,i) => {
+            allDateArray.forEach((v, i) => {
                 const obj = {}
                 obj.date = v
                 obj.cases = arrayOfTotalsForEachDay[i]
@@ -191,11 +191,11 @@ export const MovingAverageDash = ({country, state, county}) => {
     //add newCases and dayNumber properties to each datum object
     data.forEach((v, i) => {
         v.dayNumber = i
-        if(i > 0) {
-        const old = data[i-1]
+        if (i > 0) {
+            const old = data[i - 1]
 
-        const newCases = v.cases - old.cases
-        v.newCases = newCases
+            const newCases = v.cases - old.cases
+            v.newCases = newCases
         }
         else {
             v.newCases = v.cases
@@ -208,13 +208,13 @@ export const MovingAverageDash = ({country, state, county}) => {
             return accumulator + +(currValue)
         }, 0)
 
-        let avg = sum/values.length
+        let avg = sum / values.length
         return avg
     }
 
     const sma = (values, period) => {
         let sma = values.map((v, i, arr) => {
-            if(i < period) {
+            if (i < period) {
                 v = 0
             }
             else {
@@ -233,12 +233,12 @@ export const MovingAverageDash = ({country, state, county}) => {
     data.forEach((v) => {
         newCasesArray.push(v.newCases)
     })
-    sma(newCasesArray,14)
+    sma(newCasesArray, 14)
 
     const shortenNumber = (n) => {
-        const mToK = n/1000
-        if(mToK >= 1000) {
-            return `${mToK/1000}M`
+        const mToK = n / 1000
+        if (mToK >= 1000) {
+            return `${mToK / 1000}M`
         }
         else {
             return `${mToK}K`
@@ -249,66 +249,28 @@ export const MovingAverageDash = ({country, state, county}) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
-    const chartHeader = () => {
-        if(countySelected) {
-            return `New Cases: ${countrySelected} - ${stateSelected} - ${countySelected}`
-        }
-        else if(stateSelected) {
-            return `New Cases: ${countrySelected} - ${stateSelected}`
-        }
-        else if(countrySelected) {
-            return `New Cases: ${countrySelected}`
-        }
-        else {
-            return `New Cases: Global`
-        }
-    }
-
-    const chartDescription = () => {
-        const mostRecent = data.slice(-1)[0] || {}
-
-        return(
-            `On ${mostRecent.date} there were ${formatNumber(mostRecent.newCases)} new cases`
-        )
-    }
-
-    const VictoryZoomVoronoiContainer = createContainer('zoom', 'voronoi')
-
     return (
         <div className="chartContainer">
-            <div className="chartHeader">{chartHeader()}</div>
-            <div className="chartDescription">{chartDescription()}</div>
             <VictoryChart
                 className='chart'
                 height={300}
-                width={450}
-                containerComponent={
-                <VictoryZoomVoronoiContainer responsive={false}
-                    zoomDimension='x'
-                    labels={({datum}) => `Date: ${datum.date}
-                    new cases: ${datum.newCases}`}
-                />
-            }>
-                <VictoryAxis tickCount={10} label='days since day 0'/>
-                <VictoryAxis dependentAxis tickCount={5} tickFormat={(n) => shortenNumber(n)} />
-                <VictoryLine 
+                width={450}>
+                <VictoryLine
                     data={data}
                     style={{
-                        data: {stroke: '#F47E17'}
+                        data: { stroke: '#F47E17' }
                     }}
                     x="dayNumber"
                     y="newCases"
                     barRatio={1}
-                    />
-                <VictoryLine 
+                />
+                <VictoryLine
                     data={data}
                     x="dayNumber"
                     y="movingAverage"
                     barRatio={1}
-                    />
-                <VictoryLegend colorScale={['#F47E17', 'black']} 
-                data={[{name: 'New Cases'}, {name: '14d Moving Average'}]}
-                orientation={"horizontal"} />
+                />
+                <VictoryAxis dependentAxis tickCount={5} tickFormat={(n) => shortenNumber(n)} />
             </VictoryChart>
         </div>
     )

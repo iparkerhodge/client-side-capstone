@@ -7,3 +7,8 @@
 .map{
     flex-basis: 100%;
 }
+
+.mapMenu {
+    margin-bottom: -40px;
+    z-index: 1000;
+}

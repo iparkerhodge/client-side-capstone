@@ -9,7 +9,7 @@ export const WelcomePageOne = ({ togglePage }) => {
     useEffect(() => {
         controls.start({
             scale: [1, 1.15, 1],
-            transition: { duration: 1.8, loop: Infinity }
+            transition: { duration: 1.5, loop: Infinity }
         })
     })
 
@@ -19,11 +19,13 @@ export const WelcomePageOne = ({ togglePage }) => {
             <div className="arrowIcon">
                 <div className='arrowText'>proceed to login</div>
                 <motion.div animate={controls}
-                    onMouseOver={() => controls.stop()}
+                    onMouseOver={() => {
+                        controls.stop()
+                        controls.start({scale: 1.3})}}
                     onMouseLeave={() => {
                         controls.start({
                             scale: [1, 1.15, 1],
-                            transition: { duration: 1.8, loop: Infinity }
+                            transition: { duration: 1.5, loop: Infinity }
                         })
                     }}>
                     <Arrow className='arrow' onClick={togglePage} />

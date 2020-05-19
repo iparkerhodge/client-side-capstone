@@ -1,12 +1,12 @@
 import React from 'react'
-import { ReactComponent as MaskMan } from '../../images/medical-mask.svg'
 import { Register } from './Register'
 import { Login } from './Login'
+import { LoginChart } from './LoginChart'
 
 export const WelcomePageTwo = ({ toggleLogin }) => (
     <>
         <div className="info">
-            <MaskMan />
+            <LoginChart />
             <div>As policy makers begin to re-open states and municipalities with questionable regard for scientific data,
             Custom COVID-19 Tracker was designed for you to track the data in your region to make the right
             decisions for you.

@@ -5,6 +5,7 @@ import { GlobalTotalByDate } from './GlobalTotalByDate'
 import { TotalCasesSelect } from './TotalCasesSelect'
 import { PercentChangeSelect } from './PercentChangeSelect'
 import { MovingAverageSelect } from './MovingAverageSelect'
+import DailyReport from './DailyReport'
 import './Charts.css'
 
 
@@ -36,6 +37,12 @@ const ChartList = ({ setActiveView }) => {
         </div>
     )
 
+    const showDailyReport = (
+        <div className='dailyReport'>
+            <DailyReport setActiveView={setActiveView}/>
+        </div>
+    )
+
     useEffect(() => {
         if (page === 0) {
             setComponents(showGlobalTotalByDate)
@@ -49,6 +56,9 @@ const ChartList = ({ setActiveView }) => {
         else if (page === 3) {
             setComponents(showMovingAverageSelect)
         }
+        else if (page === 4) {
+            setComponents(showDailyReport)
+        }
     }, [page])
 
     return (
@@ -57,6 +67,7 @@ const ChartList = ({ setActiveView }) => {
                 <Menu.Item key={1} onClick={() => setPage(1)}>Confirmed Cases</Menu.Item>
                 <Menu.Item key={2} onClick={() => setPage(2)}>% Change in Total Confirmed</Menu.Item>
                 <Menu.Item key={3} onClick={() => setPage(3)}>New Cases</Menu.Item>
+                <Menu.Item key={4} onClick={() => setPage(4)}>US State Report</Menu.Item>
             </Menu>
             {components}
         </div>

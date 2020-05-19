@@ -1,4 +1,7 @@
 import React, {useRef} from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 
 export const Register = (props) => {
     const name = useRef()
@@ -55,45 +58,41 @@ export const Register = (props) => {
     }
 
     return (
-        <div className="container--login">
-            <form className="form--register" onSubmit={handleRegister}>
-                <h4 className="darkgray">If you are not a customer yet, please register a new account</h4>
+        <div className="registerFormContainer">
+            <form onSubmit={handleRegister}>
+                <div className="darkgray">If you do not have a custom dashboard yet, please register a new account</div>
                 <fieldset>
-                    <label htmlFor="name"> Name </label>
-                    <input ref={name} type="text"
+                    <TextField inputRef={name} type="text"
                         name="name"
                         className="form-control"
                         placeholder="Name"
                         required  />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail"> Email address </label>
-                    <input ref={email} type="email"
+                    <TextField inputRef={email} type="email"
                         name="email"
                         className="form-control"
                         placeholder="Email address"
                         required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputPassword"> Password </label>
-                    <input ref={password} type="password"
+                    <TextField inputRef={password} type="password"
                         name="password"
                         className="form-control"
                         placeholder="Password"
                         required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <input ref={verifyPassword} type="password"
+                    <TextField inputRef={verifyPassword} type="password"
                         name="verifyPassword"
                         className="form-control"
                         placeholder="Verify password"
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <Button type="submit">
                         Register
-                    </button>
+                    </Button>
                 </fieldset>
             </form>
         </div>
