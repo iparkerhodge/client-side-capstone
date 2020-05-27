@@ -12,13 +12,13 @@ export const WidgetProvider = (props) => {
     }
 
     const getWidgets = () => {
-        return fetch('http://localhost:8088/widgets')
+        return fetch('https://custom-covid19-tracker-api.herokuapp.com/widgets')
             .then(r => r.json())
             .then(setWidgets)
     }
 
     const addWidget = widget => {
-        return fetch('http://localhost:8088/widgets', {
+        return fetch('https://custom-covid19-tracker-api.herokuapp.com/widgets', {
             method:'POST',
             headers:{
                 "Content-Type": "application/json"
@@ -29,7 +29,7 @@ export const WidgetProvider = (props) => {
     }
 
     const removeWidget = widgetId => {
-        return fetch(`http://localhost:8088/widgets/${widgetId}`, {
+        return fetch(`https://custom-covid19-tracker-api.herokuapp.com/widgets/${widgetId}`, {
             method: "DELETE"
         })
             .then(getWidgets)
