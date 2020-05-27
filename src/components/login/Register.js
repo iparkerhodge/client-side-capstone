@@ -11,7 +11,7 @@ export const Register = (props) => {
 
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
+        return fetch(`https://custom-covid19-tracker-api.herokuapp.com/users?email=${email.current.value}`)
         .then(_ => _.json())
         .then(user => {
             if (user.length) {
@@ -28,7 +28,7 @@ export const Register = (props) => {
             existingUserCheck()
             .then((result) => {
                 if (result) {
-                fetch('http://localhost:8088/users', {
+                fetch('https://custom-covid19-tracker-api.herokuapp.com/users', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
