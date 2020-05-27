@@ -1,5 +1,6 @@
 {
   "name": "covid-tracker",
+  "homepage": "http://iparkerhodge@github.io/client-side-capstone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -44,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
